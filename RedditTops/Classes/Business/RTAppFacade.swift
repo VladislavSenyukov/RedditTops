@@ -11,9 +11,17 @@ import UIKit
 class RTAppFacade: NSObject {
 
     static let shared = RTAppFacade()
+    let networkManager = RTRedditNetworkManager()
+    var session: RTSession?
     
-    func login(login: String, pass: String, completion: @escaping (Bool) -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { 
+    func processAuthRequest(request: URLRequest, completion: @escaping (Bool) -> ()) {
+        networkManager.processAuthRequest(request: request) {[unowned self] (tokenInfoDic) in
+            if tokenInfoDic != nil {
+                self.session = RTSession(tokenInfo: tokenInfoDic!)
+                if self.session != nil {
+                    completion(true)
+                }
+            }
             completion(false)
         }
     }

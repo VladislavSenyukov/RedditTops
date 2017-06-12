@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C060D6F1EE64BA700A5DD52 /* RTAppFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C060D6E1EE64BA700A5DD52 /* RTAppFacade.swift */; };
+		1C060D711EE6515F00A5DD52 /* RTRedditNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C060D701EE6515F00A5DD52 /* RTRedditNetworkManager.swift */; };
+		1C060D731EEF5A7000A5DD52 /* RTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C060D721EEF5A7000A5DD52 /* RTSession.swift */; };
 		1C8B9CCE1EE632D100AB1F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B9CC31EE632D100AB1F09 /* AppDelegate.swift */; };
 		1C8B9CCF1EE632D100AB1F09 /* RTLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B9CC61EE632D100AB1F09 /* RTLoginViewController.swift */; };
 		1C8B9CD01EE632D100AB1F09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B9CC81EE632D100AB1F09 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		1C060D6E1EE64BA700A5DD52 /* RTAppFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTAppFacade.swift; sourceTree = "<group>"; };
+		1C060D701EE6515F00A5DD52 /* RTRedditNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTRedditNetworkManager.swift; sourceTree = "<group>"; };
+		1C060D721EEF5A7000A5DD52 /* RTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTSession.swift; sourceTree = "<group>"; };
 		1C8B9CA81EE631D500AB1F09 /* RedditTops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditTops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8B9CC31EE632D100AB1F09 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C8B9CC61EE632D100AB1F09 /* RTLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTLoginViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 			children = (
 				1C8B9CC31EE632D100AB1F09 /* AppDelegate.swift */,
 				1C060D6E1EE64BA700A5DD52 /* RTAppFacade.swift */,
+				1C060D701EE6515F00A5DD52 /* RTRedditNetworkManager.swift */,
+				1C060D721EEF5A7000A5DD52 /* RTSession.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -182,8 +188,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C060D731EEF5A7000A5DD52 /* RTSession.swift in Sources */,
 				1C8B9CCF1EE632D100AB1F09 /* RTLoginViewController.swift in Sources */,
 				1C8B9CCE1EE632D100AB1F09 /* AppDelegate.swift in Sources */,
+				1C060D711EE6515F00A5DD52 /* RTRedditNetworkManager.swift in Sources */,
 				1C060D6F1EE64BA700A5DD52 /* RTAppFacade.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

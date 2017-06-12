@@ -8,69 +8,40 @@
 
 import UIKit
 
-class RTLoginViewController: UIViewController {
+class RTLoginViewController: UIViewController, UIWebViewDelegate {
 
-    @IBOutlet weak var loginField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    weak var activeField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        let request = URLRequest(url: URL(string: RTAppFacade.shared.networkManager.authURL)!)
+        webView.loadRequest(request)
+        spinner.startAnimating()
     }
 
-    @IBAction func didTapBackground(_ sender: UITapGestureRecognizer) {
-        activeField?.resignFirstResponder()
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        spinner.startAnimating()
     }
     
-    func login() {
-        let login = loginField.text
-        let pass = passwordField.text
-        let alert = UIAlertController(title: "Error", message: "Please, check correctness of your login data", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        if (validateAuthData(login: login, pass: pass)) {
-            activeField?.resignFirstResponder()
-            spinner.startAnimating()
-            RTAppFacade.shared.login(login: login!, pass: pass!, completion: {[unowned self] (success: Bool) -> () in
-                self.spinner.stopAnimating()
-                if success {
-                    
-                } else {
-                    self.show(alert, sender: self)
-                }
-            })
-        } else {
-            show(alert, sender: self)
-        }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        spinner.stopAnimating()
     }
     
-    func validateAuthData(login: String?, pass: String?) -> Bool {
-        // simplified validation
-        guard
-            let aLogin = login,
-            let aPass = pass
-        else {
-            return false
-        }
-        return aLogin.characters.count > 0 && aPass.characters.count > 0
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        
     }
-
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        RTAppFacade.shared.processAuthRequest(request: request) { (success) in
+            if success {
+                
+            } else {
+                
+            }
+        }
+        return true;
+    }
 }
 
-extension RTLoginViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeField = textField
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField === loginField {
-            passwordField.becomeFirstResponder()
-        } else if textField === passwordField {
-            login()
-        }
-        return true
-    }
-}
 
