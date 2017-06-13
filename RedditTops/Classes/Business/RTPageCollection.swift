@@ -8,6 +8,14 @@
 
 import UIKit
 
-class RTPageCollection: NSObject {
-
+class RTPageCollection<T: RTEntity> {
+    
+    let url: String
+    var count = 20
+    var lastMark: String?
+    var loading = false
+    
+    init(url: String) {
+        self.url = url
+    }
 }

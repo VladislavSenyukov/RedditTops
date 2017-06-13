@@ -8,6 +8,19 @@
 
 import UIKit
 
-class RTKeys: NSObject {
-
+enum RTKeys: String {
+    case id = "id"
+    case title = "title"
+    case author = "author"
+    case created = "created_utc"
+    case comments = "num_comments"
+    case preview = "preview"
+    case images = "images"
+    case source = "source"
+    case resolutions = "resolutions"
+    case url = "url"
+    case width = "width"
+    case height = "height"
+    case after = "after"
 }
+

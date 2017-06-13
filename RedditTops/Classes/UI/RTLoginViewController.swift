@@ -20,6 +20,11 @@ class RTLoginViewController: UIViewController, UIWebViewDelegate {
         spinner.startAnimating()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     func webViewDidStartLoad(_ webView: UIWebView) {
         spinner.startAnimating()
     }
@@ -33,9 +38,11 @@ class RTLoginViewController: UIViewController, UIWebViewDelegate {
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        RTAppFacade.shared.processAuthRequest(request: request) { (success) in
+        RTAppFacade.shared.processAuthRequest(request: request) {[unowned self] (success) in
+            self.spinner.stopAnimating()
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             if success {
-                
+                self.performSegue(withIdentifier: "ShowTops", sender: self)
             } else {
                 
             }

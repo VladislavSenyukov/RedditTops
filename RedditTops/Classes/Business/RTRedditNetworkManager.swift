@@ -9,13 +9,16 @@
 import UIKit
 
 class RTRedditNetworkManager: NSObject {
-    let secretKey = "yf1CtQDWPxZaCA"
-    let baseURL = "https://www.reddit.com/api/v1"
-    let redirectURI = "http://127.0.0.1/authorize_callback"
-    let accessTokenUrl = "https://www.reddit.com/api/v1/access_token"
+    
+    var delegate: RTAuthorizable?
     var authURL: String {
         return "\(self.baseURL)/authorize?client_id=\(secretKey)&response_type=code&state=auth&redirect_uri=\(redirectURI)&duration=temporary&scope=read&raw_json=1"
     }
+    
+    private let secretKey = "yf1CtQDWPxZaCA"
+    private let baseURL = "https://www.reddit.com/api/v1"
+    private let redirectURI = "http://127.0.0.1/authorize_callback"
+    private let accessTokenUrl = "https://www.reddit.com/api/v1/access_token"
     
     func processAuthRequest(request: URLRequest, completion: @escaping ([String:AnyObject]?) -> ()) {
         if let urlString = request.url?.absoluteString {
@@ -57,5 +60,11 @@ class RTRedditNetworkManager: NSObject {
                 completion(nil)
             }
         }.resume()
+    }
+    
+    func fetchTops(completion: @escaping () -> ()) {
+        if let accessToken = delegate?.accessToken {
+            
+        }
     }
 }

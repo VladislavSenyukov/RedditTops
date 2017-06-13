@@ -8,6 +8,20 @@
 
 import UIKit
 
-class RTEntity: NSObject {
+class RTEntity: PLDeserializable {
+    
+    let id: String
+    
+    required init?(jsonDic: [String : AnyObject]) {
+        guard
+            let id = jsonDic[RTKeys.id.rawValue] as? String
+        else {
+            return nil
+        }
+        self.id = id
+    }
+}
 
+protocol PLDeserializable {
+    init?(jsonDic: [String:AnyObject])
 }
