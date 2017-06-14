@@ -36,12 +36,6 @@ class RTAppFacade: NSObject {
             }
         }
     }
-    
-    func fetchTops(completion: @escaping () -> ()) {
-        networkManager.fetchTops {
-            
-        }
-    }
 }
 
 extension RTAppFacade : RTAuthorizable {

@@ -1,5 +1,5 @@
 //
-//  RTKeys.swift
+//  RTConstants.swift
 //  RedditTops
 //
 //  Created by Vladislav Senyukov on 13.06.17.
@@ -22,5 +22,16 @@ enum RTKeys: String {
     case width = "width"
     case height = "height"
     case after = "after"
+    case limit = "limit"
+    case data = "data"
+    case children = "children"
+    
+    var key: String {
+        return rawValue
+    }
+}
+
+enum RTError : Error {
+    case WrongURL
 }
 

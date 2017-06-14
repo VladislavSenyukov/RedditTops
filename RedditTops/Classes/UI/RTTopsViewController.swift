@@ -9,14 +9,19 @@
 import UIKit
 
 class RTTopsViewController: UIViewController {
-
+    
+    let topsDatasource = RTTopsDatasource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Reddit Tops"
         view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        RTAppFacade.shared.fetchTops {
-            
+        topsDatasource.load {[unowned self] (indices, error) in
+            print(indices)
+            self.topsDatasource.load { (indices, error) in
+                print(indices)
+            }
         }
     }
 
