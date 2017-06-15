@@ -37,7 +37,9 @@ class RTPageLoader<T: RTEntity> {
                 networkManager.get(url: url, completion: {[unowned self] (responseDic, error) in
                     self.loading = false
                     if error != nil {
-                        self.delegate?.pageLoaderDidFailWithError(error: error!)
+                        DispatchQueue.main.async {
+                            self.delegate?.pageLoaderDidFailWithError(error: error!)
+                        }
                     } else {
                         var objects = [T]()
                         if let aResponseDic = responseDic {
@@ -53,7 +55,9 @@ class RTPageLoader<T: RTEntity> {
                             })
                             self.updateAfter(responseDic: aResponseDic, preset: preset)
                         }
-                        self.delegate?.pageLoaderDidLoadPage(pageObjects: NSMutableArray(array: objects))
+                        DispatchQueue.main.async {
+                            self.delegate?.pageLoaderDidLoadPage(pageObjects: NSMutableArray(array: objects))
+                        }
                     }
                 })
             } else {

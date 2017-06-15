@@ -8,20 +8,60 @@
 
 import UIKit
 
-class RTTopsViewController: UIViewController {
+class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let topsDatasource = RTTopsDatasource()
+    private let topsDatasource = RTTopsDatasource()
+    @IBOutlet private weak var tableView: UITableView?
+    @IBOutlet private weak var spinner: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        
+        tableView?.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadTops()
+    }
+    
+    func loadTops() {
+        spinner?.startAnimating()
         topsDatasource.load {[unowned self] (indices, error) in
-            print(indices)
-            self.topsDatasource.load { (indices, error) in
-                print(indices)
+            self.spinner?.stopAnimating()
+            if error == nil {
+                self.tableView?.beginUpdates()
+                self.tableView?.insertRows(at: indices, with: .fade)
+                self.tableView?.endUpdates()
+            } else {
+                // TODO: show alert error
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return topsDatasource.count
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RTItemTableViewCell.identifier, for: indexPath)
+        if let itemCell = cell as? RTItemTableViewCell {
+            let item = topsDatasource[indexPath.row]
+            itemCell.updateWithItem(item: item)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if topsDatasource.shouldLoadNextPage(indexPath: indexPath) {
+            loadTops()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 }

@@ -20,6 +20,7 @@
 		1C8B9CD11EE632D100AB1F09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B9CC91EE632D100AB1F09 /* LaunchScreen.storyboard */; };
 		1C8B9CD21EE632D100AB1F09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B9CCB1EE632D100AB1F09 /* Main.storyboard */; };
 		1C8B9CD31EE632D100AB1F09 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B9CCD1EE632D100AB1F09 /* Info.plist */; };
+		1C962A3B1EF1F90B00BE943E /* RTItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		1C8B9CCA1EE632D100AB1F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C8B9CCC1EE632D100AB1F09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C8B9CCD1EE632D100AB1F09 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTItemTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				1C060D741EEF60EC00A5DD52 /* RTTopsViewController.swift */,
+				1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				1C060D7F1EEF72B700A5DD52 /* RTPageLoader.swift in Sources */,
 				1C060D751EEF60EC00A5DD52 /* RTTopsViewController.swift in Sources */,
+				1C962A3B1EF1F90B00BE943E /* RTItemTableViewCell.swift in Sources */,
 				1C8B9CCE1EE632D100AB1F09 /* AppDelegate.swift in Sources */,
 				1C060D7D1EEF6F8D00A5DD52 /* RTItem.swift in Sources */,
 				1C060D791EEF6E4700A5DD52 /* RTEntity.swift in Sources */,
