@@ -35,9 +35,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4j1-op-0AV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4j1-op-0AV">
                                                     <rect key="frame" x="5" y="5" width="70" height="70"/>
-                                                    <color key="backgroundColor" red="0.89870061528497414" green="0.79592688271206047" blue="0.54876497186596584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="VR4-ZN-ANS"/>
                                                         <constraint firstAttribute="height" constant="70" id="i4q-W3-WbF"/>
@@ -124,6 +124,7 @@
                                             <outlet property="authorLabel" destination="IWQ-SU-bae" id="PWW-Ky-vx3"/>
                                             <outlet property="commentsCountLabel" destination="ODQ-eg-ccj" id="srG-rO-OzT"/>
                                             <outlet property="dateLabel" destination="Q1X-XX-Xfr" id="fiJ-4P-fcC"/>
+                                            <outlet property="previewImageView" destination="4j1-op-0AV" id="yJY-hh-Q8m"/>
                                             <outlet property="titleLabel" destination="veu-0C-zRA" id="Jwx-ak-nQ6"/>
                                         </connections>
                                     </tableViewCell>

@@ -9,22 +9,21 @@
 import UIKit
 
 enum RTKeys: String {
-    case id = "id"
-    case title = "title"
-    case author = "author"
+    case title
+    case author
     case created = "created_utc"
     case comments = "num_comments"
-    case preview = "preview"
-    case images = "images"
-    case source = "source"
-    case resolutions = "resolutions"
-    case url = "url"
-    case width = "width"
-    case height = "height"
-    case after = "after"
-    case limit = "limit"
-    case data = "data"
-    case children = "children"
+    case preview
+    case images
+    case source
+    case url
+    case width
+    case height
+    case thumbnail
+    case after
+    case limit
+    case data
+    case children
     
     var key: String {
         return rawValue

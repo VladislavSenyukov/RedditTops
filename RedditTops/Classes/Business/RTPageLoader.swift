@@ -23,7 +23,7 @@ protocol RTPageLoaderDelegate: class {
     func pageLoaderDidFailWithError(error: Error)
 }
 
-class RTPageLoader<T: RTEntity> {
+class RTPageLoader<T: RTDeserializable> {
     
     var after = ""
     var loading = false

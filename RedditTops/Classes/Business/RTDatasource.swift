@@ -10,7 +10,7 @@ import UIKit
 
 typealias RTDatasourceIndicesCompletion = (_ indices: [IndexPath], _ error: Error?) -> ()
 
-class RTDatasource<T:RTEntity> : RTPageLoaderDelegate {
+class RTDatasource<T:RTDeserializable> : RTPageLoaderDelegate {
     
     var preset: RTCollectionPreset
     

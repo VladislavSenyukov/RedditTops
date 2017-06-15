@@ -8,6 +8,8 @@
 
 import UIKit
 
+let thumbImage = #imageLiteral(resourceName: "nothumb")
+
 class RTItemTableViewCell: UITableViewCell {
 
     static let identifier = "ItemTableViewCellIdentifier"
@@ -16,12 +18,16 @@ class RTItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var authorLabel: UILabel?
     @IBOutlet private weak var dateLabel: UILabel?
     @IBOutlet private weak var commentsCountLabel: UILabel?
+    @IBOutlet private weak var previewImageView: UIImageView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         for label in [titleLabel, authorLabel, dateLabel, commentsCountLabel] {
             label?.backgroundColor = .clear
         }
+        previewImageView?.layer.cornerRadius = 10
+        previewImageView?.layer.masksToBounds = true
+        previewImageView?.layer.shouldRasterize = true
     }
     
     func updateWithItem(item: RTItem) {
@@ -34,6 +40,28 @@ class RTItemTableViewCell: UITableViewCell {
             timeWord = "hour\(hoursPassed > 1 ? "s" : "")"
         }
         dateLabel?.text = "sent \(hoursPassed) \(timeWord) ago by"
+        updateThumb(url: item.thumbUrl)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+    }
+    
+    func updateThumb(url: String?) {
+        if let aUrl = url {
+            if let thumbUrl = URL(string: aUrl) {
+                if let data = try? Data(contentsOf: thumbUrl) {
+                    previewImageView?.image = UIImage(data: data)
+                } else {
+                    previewImageView?.image = thumbImage
+                }
+            } else {
+                previewImageView?.image = thumbImage
+            }
+        } else {
+            previewImageView?.image = thumbImage
+        }
     }
 
 }

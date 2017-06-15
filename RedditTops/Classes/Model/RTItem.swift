@@ -8,14 +8,14 @@
 
 import UIKit
 
-class RTItem: RTEntity {
+class RTItem: RTDeserializable {
     
     let title: String
     let author: String
     let date: Date
     let comments: Int
-    var thumbSmall: String?
-    var thumbBig: String?
+    var originalPreview: RTItemPreview?
+    var thumbUrl: String?
     
     required init?(jsonDic: [String : AnyObject]) {
         guard
@@ -31,6 +31,19 @@ class RTItem: RTEntity {
         self.author = author
         self.date = Date(timeIntervalSince1970: createdAt)
         self.comments = comments
-        super.init(jsonDic: jsonDic)
+        
+        if let previewsDic = jsonDic[RTKeys.preview.key] as? [String : AnyObject] {
+            if let imagesObj = previewsDic[RTKeys.images.key] as? [AnyObject] {
+                if let imagesDic = imagesObj.first as?  [String : AnyObject] {
+                    if let sourceDic = imagesDic[RTKeys.source.key] as? [String : AnyObject] {
+                        self.originalPreview = RTItemPreview(jsonDic: sourceDic)
+                    }
+                }
+            }
+        }
+        
+        if let thumbUrl = jsonDic[RTKeys.thumbnail.rawValue] as? String {
+            self.thumbUrl = thumbUrl
+        }
     }
 }
