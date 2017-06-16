@@ -30,7 +30,7 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.spinner?.stopAnimating()
             if error == nil {
                 self.tableView?.beginUpdates()
-                self.tableView?.insertRows(at: indices, with: .fade)
+                self.tableView?.insertRows(at: indices, with: .none)
                 self.tableView?.endUpdates()
             } else {
                 // TODO: show alert error

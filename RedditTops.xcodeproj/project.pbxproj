@@ -22,6 +22,7 @@
 		1C8B9CD31EE632D100AB1F09 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B9CCD1EE632D100AB1F09 /* Info.plist */; };
 		1C962A3B1EF1F90B00BE943E /* RTItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */; };
 		1C962A3D1EF21A3900BE943E /* RTItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3C1EF21A3900BE943E /* RTItemPreview.swift */; };
+		1C962A3F1EF3251D00BE943E /* RTImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3E1EF3251D00BE943E /* RTImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		1C8B9CCD1EE632D100AB1F09 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTItemTableViewCell.swift; sourceTree = "<group>"; };
 		1C962A3C1EF21A3900BE943E /* RTItemPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTItemPreview.swift; sourceTree = "<group>"; };
+		1C962A3E1EF3251D00BE943E /* RTImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				1C060D7E1EEF72B700A5DD52 /* RTPageLoader.swift */,
 				1C060D761EEF6E2800A5DD52 /* RTDatasource.swift */,
 				1C060D801EF0A7E400A5DD52 /* RTTopsDatasource.swift */,
+				1C962A3E1EF3251D00BE943E /* RTImageLoader.swift */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				1C060D771EEF6E2800A5DD52 /* RTDatasource.swift in Sources */,
 				1C962A3D1EF21A3900BE943E /* RTItemPreview.swift in Sources */,
 				1C060D811EF0A7E400A5DD52 /* RTTopsDatasource.swift in Sources */,
+				1C962A3F1EF3251D00BE943E /* RTImageLoader.swift in Sources */,
 				1C060D7B1EEF6F0A00A5DD52 /* RTConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

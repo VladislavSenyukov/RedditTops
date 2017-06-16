@@ -66,7 +66,7 @@ class RTPageLoader<T: RTDeserializable> {
         }
     }
     
-    func prepareUrl(preset: RTCollectionPreset, after: String) -> URL? {
+    private func prepareUrl(preset: RTCollectionPreset, after: String) -> URL? {
         var url = "\(preset.url)?\(preset.limitKey)=\(preset.limit)"
         if !after.isEmpty {
             url = "\(url)&\(preset.afterKey)=\(after)"
@@ -74,7 +74,7 @@ class RTPageLoader<T: RTDeserializable> {
         return URL(string: url)
     }
     
-    func extractObjects(data: [String:AnyObject], atPath path: [String]) -> [AnyObject] {
+    private func extractObjects(data: [String:AnyObject], atPath path: [String]) -> [AnyObject] {
         var objects = [AnyObject]()
         var tempData = data
         for (idx, pathComponent) in path.enumerated() {
@@ -91,7 +91,7 @@ class RTPageLoader<T: RTDeserializable> {
         return objects
     }
     
-    func extractString(data: [String:AnyObject], atPath path: [String]) -> String {
+    private func extractString(data: [String:AnyObject], atPath path: [String]) -> String {
         var string = ""
         var tempData = data
         for (idx, pathComponent) in path.enumerated() {
@@ -109,7 +109,7 @@ class RTPageLoader<T: RTDeserializable> {
     }
     
     
-    func updateAfter(responseDic: [String:AnyObject], preset: RTCollectionPreset) {
+    private func updateAfter(responseDic: [String:AnyObject], preset: RTCollectionPreset) {
         after = extractString(data: responseDic, atPath: preset.afterPath)
     }
 }

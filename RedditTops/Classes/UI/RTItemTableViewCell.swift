@@ -20,6 +20,8 @@ class RTItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var commentsCountLabel: UILabel?
     @IBOutlet private weak var previewImageView: UIImageView?
 
+    var item: RTItem?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         for label in [titleLabel, authorLabel, dateLabel, commentsCountLabel] {
@@ -30,7 +32,17 @@ class RTItemTableViewCell: UITableViewCell {
         previewImageView?.layer.shouldRasterize = true
     }
     
+    override func prepareForReuse() {
+        previewImageView?.image = nil
+        if item != nil, let url = item!.thumbUrl {
+            RTImageLoader.cancelDownloadingImage(url: url)
+        }
+        super.prepareForReuse()
+    }
+    
     func updateWithItem(item: RTItem) {
+        self.item = item
+        
         titleLabel?.text = item.title
         authorLabel?.text = item.author
         commentsCountLabel?.text = "\(item.comments) comment\(item.comments > 1 ? "s" : "")"
@@ -43,25 +55,16 @@ class RTItemTableViewCell: UITableViewCell {
         updateThumb(url: item.thumbUrl)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-    }
-    
     func updateThumb(url: String?) {
         if let aUrl = url {
-            if let thumbUrl = URL(string: aUrl) {
-                if let data = try? Data(contentsOf: thumbUrl) {
-                    previewImageView?.image = UIImage(data: data)
-                } else {
-                    previewImageView?.image = thumbImage
+            RTImageLoader.downloadImage(url: aUrl, completion: {[unowned self] (loadedImage) in
+                DispatchQueue.main.async {
+                    let finalImage = loadedImage != nil ? loadedImage! : thumbImage
+                    self.previewImageView?.image = finalImage
                 }
-            } else {
-                previewImageView?.image = thumbImage
-            }
+            })
         } else {
             previewImageView?.image = thumbImage
         }
     }
-
 }

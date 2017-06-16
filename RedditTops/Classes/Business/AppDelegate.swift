@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        let url = "https://b.thumbs.redditmedia.com/g6W_VBuhdIi-f_VCG8z4HXgxxikHKVmrPU6mqOHYt1E.jpg".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+//        print(url)
+//        let theURL = URL(string: url)!
+//        URLSession.shared.downloadTask(with:theURL) { (location, response, error) in
+//            print(location)
+//            print("")
+//        }.resume()
+        
         return true
     }
 
