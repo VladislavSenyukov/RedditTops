@@ -16,17 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-//        let url = "https://i.redditmedia.com/RmCrxWml0aC4Y1mpoB8W3vZTHkG34PEfpkKSgGsMjkE.jpg?s=51e61d150209af0da5cc773a82250cc3"
-//        print(url)
-//
-//        let theURL = URL(string: url)!
-//        URLSession.shared.dataTask(with: theURL) { (data, r, er) in
-//            let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-//            print(json)
-//            print("")
-//        }.resume()
-        
         return true
     }
 
