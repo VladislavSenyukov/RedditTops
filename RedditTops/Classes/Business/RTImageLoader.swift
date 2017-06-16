@@ -101,7 +101,7 @@ class RTImageCacheOperationQueue: OperationQueue {
 class RTImageDownloadOperation: Operation {
     
     let url: String
-    var downloadTask: URLSessionDownloadTask?
+    var dataTask: URLSessionDataTask?
     let completion: RTImageCacheCompletion
     
     init(url: String, completion: @escaping RTImageCacheCompletion) {
@@ -110,31 +110,30 @@ class RTImageDownloadOperation: Operation {
     }
     
     override func cancel() {
-        downloadTask?.cancel()
+        dataTask?.cancel()
         super.cancel()
     }
     
     override func main() {
         if isCancelled { return }
         guard
-            let aURL = url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed),
-            let encodedURL = URL(string: aURL)
+            let aURL = URL(string: url)
         else {
             completion(nil)
             return
         }
         if isCancelled { return }
         
-        var imageLocation: URL?
         let semaphore = DispatchSemaphore(value: 0)
-        downloadTask = URLSession.shared.downloadTask(with: encodedURL, completionHandler: { (location, response, error) in
-            imageLocation = location
+        
+        var imageData: Data?
+        dataTask = URLSession.shared.dataTask(with: aURL, completionHandler: { (data, response, error) in
+            imageData = data
             semaphore.signal()
         })
-        
         if isCancelled { return }
+        dataTask?.resume()
         
-        downloadTask?.resume()
         let timeout = DispatchTime.now() + .seconds(30)
         if semaphore.wait(timeout: timeout) == .timedOut {
             // time out
@@ -142,17 +141,14 @@ class RTImageDownloadOperation: Operation {
         
         if isCancelled { return }
         
-        if let location = imageLocation {
-            if let data = try? Data(contentsOf: location) {
-                // the next conversion is needed because a UIImage created with Data is rendered by the time it is assigned to its UIImageView (on main thread), so by creating an image via a CGImage we boost performance
-                if let provider = CGDataProvider(data: data as CFData) {
+        if let aData = imageData {
+            if let provider = CGDataProvider(data: aData as CFData) {
+                if isCancelled { return }
+                if let cgImage = CGImage(jpegDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) {
                     if isCancelled { return }
-                    if let cgImage = CGImage(jpegDataProviderSource: provider, decode: nil, shouldInterpolate: true, intent: .defaultIntent) {
-                        if isCancelled { return }
-                        let image = UIImage(cgImage: cgImage)
-                        completion(image)
-                        return
-                    }
+                    let image = UIImage(cgImage: cgImage)
+                    completion(image)
+                    return
                 }
             }
         }

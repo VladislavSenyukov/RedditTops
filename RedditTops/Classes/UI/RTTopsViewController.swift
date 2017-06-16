@@ -21,7 +21,10 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadTops()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        if topsDatasource.count == 0 {
+            loadTops()
+        }
     }
     
     func loadTops() {
@@ -47,6 +50,7 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let itemCell = cell as? RTItemTableViewCell {
             let item = topsDatasource[indexPath.row]
             itemCell.updateWithItem(item: item)
+            itemCell.delegate = self
         }
         return cell
     }
@@ -63,5 +67,22 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            let url = sender as? String,
+            let vc = segue.destination as? RTImagePreviewViewController
+        else {
+            // TODO: show error no preview
+            return
+        }
+        vc.url = url
+    }
+}
+
+extension RTTopsViewController : RTItemTableViewCellDelegate {
+    func itemTableCell(cell: RTItemTableViewCell, didTapOnItem item: RTItem) {
+        performSegue(withIdentifier: "ShowPreview", sender: item.originalPreview?.url)
     }
 }

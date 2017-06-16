@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XPF-Uz-CYJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pa4-Up-UJ5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="eT4-PQ-N9t">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Pa4-Up-UJ5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="5rI-dH-gEC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XPF-Uz-CYJ" kind="relationship" relationship="rootViewController" id="ibR-23-630"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BPv-cQ-ec0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-756" y="41"/>
+        </scene>
         <!--Tops View Controller-->
         <scene sceneID="vHi-kj-cXC">
             <objects>
@@ -35,7 +51,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4j1-op-0AV">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4j1-op-0AV">
                                                     <rect key="frame" x="5" y="5" width="70" height="70"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -149,14 +165,70 @@
                             <constraint firstAttribute="trailing" secondItem="o6W-Nw-iNI" secondAttribute="trailing" id="fes-O5-jFO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="8fd-jS-WQM"/>
                     <connections>
                         <outlet property="spinner" destination="cX3-1E-O7X" id="Wjb-of-79n"/>
                         <outlet property="tableView" destination="o6W-Nw-iNI" id="WDf-eT-4tH"/>
+                        <segue destination="KUQ-Tq-FgN" kind="show" identifier="ShowPreview" id="iCI-zy-Hkr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R5g-34-VqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="40.929535232383813"/>
+        </scene>
+        <!--Image Preview View Controller-->
+        <scene sceneID="E5S-Hy-hgE">
+            <objects>
+                <viewController id="KUQ-Tq-FgN" customClass="RTImagePreviewViewController" customModule="RedditTops" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ygN-eh-HK8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wr2-qL-IA2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kkY-zN-CQW">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vbw-IV-Haa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Loading Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeU-km-a77">
+                                <rect key="frame" x="0.0" y="286.5" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7wY-Au-GPN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" red="0.41025069815837401" green="0.49701046584675629" blue="0.93600226683937826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="5gH-Iv-gMW">
+                                <rect key="frame" x="169" y="283" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vbw-IV-Haa" firstAttribute="top" secondItem="kkY-zN-CQW" secondAttribute="top" id="2RC-xm-S3C"/>
+                            <constraint firstItem="FeU-km-a77" firstAttribute="centerY" secondItem="kkY-zN-CQW" secondAttribute="centerY" id="CSd-0i-H7O"/>
+                            <constraint firstItem="5gH-Iv-gMW" firstAttribute="centerX" secondItem="kkY-zN-CQW" secondAttribute="centerX" id="IFf-mj-fNW"/>
+                            <constraint firstItem="vbw-IV-Haa" firstAttribute="leading" secondItem="kkY-zN-CQW" secondAttribute="leading" id="LBt-2a-OYF"/>
+                            <constraint firstItem="FeU-km-a77" firstAttribute="leading" secondItem="kkY-zN-CQW" secondAttribute="leading" id="fok-BA-dtm"/>
+                            <constraint firstAttribute="trailing" secondItem="FeU-km-a77" secondAttribute="trailing" id="key-5L-eO1"/>
+                            <constraint firstItem="5gH-Iv-gMW" firstAttribute="centerY" secondItem="kkY-zN-CQW" secondAttribute="centerY" id="pll-Gy-xLt"/>
+                            <constraint firstItem="Wr2-qL-IA2" firstAttribute="top" secondItem="vbw-IV-Haa" secondAttribute="bottom" id="vrm-4c-Vjh"/>
+                            <constraint firstAttribute="trailing" secondItem="vbw-IV-Haa" secondAttribute="trailing" id="w9a-F5-zj9"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="errorLabel" destination="FeU-km-a77" id="K2M-el-A8v"/>
+                        <outlet property="previewImageView" destination="vbw-IV-Haa" id="SmR-vw-OX9"/>
+                        <outlet property="spinner" destination="5gH-Iv-gMW" id="LrK-W6-YuV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZg-SB-a96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="41.829085457271368"/>
         </scene>
     </scenes>
 </document>

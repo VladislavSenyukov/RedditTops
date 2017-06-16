@@ -10,6 +10,10 @@ import UIKit
 
 let thumbImage = #imageLiteral(resourceName: "nothumb")
 
+protocol RTItemTableViewCellDelegate: class {
+    func itemTableCell(cell: RTItemTableViewCell, didTapOnItem item: RTItem)
+}
+
 class RTItemTableViewCell: UITableViewCell {
 
     static let identifier = "ItemTableViewCellIdentifier"
@@ -19,7 +23,8 @@ class RTItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var dateLabel: UILabel?
     @IBOutlet private weak var commentsCountLabel: UILabel?
     @IBOutlet private weak var previewImageView: UIImageView?
-
+    weak var delegate: RTItemTableViewCellDelegate?
+    
     var item: RTItem?
     
     override func awakeFromNib() {
@@ -30,6 +35,9 @@ class RTItemTableViewCell: UITableViewCell {
         previewImageView?.layer.cornerRadius = 10
         previewImageView?.layer.masksToBounds = true
         previewImageView?.layer.shouldRasterize = true
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(thunbDidTap))
+        previewImageView?.addGestureRecognizer(tapRecognizer)
     }
     
     override func prepareForReuse() {
@@ -55,16 +63,22 @@ class RTItemTableViewCell: UITableViewCell {
         updateThumb(url: item.thumbUrl)
     }
     
-    func updateThumb(url: String?) {
+    private func updateThumb(url: String?) {
         if let aUrl = url {
-            RTImageLoader.downloadImage(url: aUrl, completion: {[unowned self] (loadedImage) in
-                DispatchQueue.main.async {
-                    let finalImage = loadedImage != nil ? loadedImage! : thumbImage
-                    self.previewImageView?.image = finalImage
-                }
-            })
-        } else {
-            previewImageView?.image = thumbImage
+            if let encodedURL = aUrl.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+                RTImageLoader.downloadImage(url: encodedURL, completion: {[unowned self] (loadedImage) in
+                    DispatchQueue.main.async {
+                        let finalImage = loadedImage != nil ? loadedImage! : thumbImage
+                        self.previewImageView?.image = finalImage
+                    }
+                })
+                return
+            }
         }
+        previewImageView?.image = thumbImage
+    }
+    
+    @objc private func thunbDidTap() {
+        delegate?.itemTableCell(cell: self, didTapOnItem: self.item!)
     }
 }
