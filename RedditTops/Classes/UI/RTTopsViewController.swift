@@ -36,7 +36,7 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tableView?.insertRows(at: indices, with: .none)
                 self.tableView?.endUpdates()
             } else {
-                // TODO: show alert error
+                self.showOKAlert(message: "Error loading tops")
             }
         }
     }
@@ -71,18 +71,20 @@ class RTTopsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
-            let url = sender as? String,
             let vc = segue.destination as? RTImagePreviewViewController
         else {
-            // TODO: show error no preview
             return
         }
-        vc.url = url
+        vc.url = sender as? String
     }
 }
 
 extension RTTopsViewController : RTItemTableViewCellDelegate {
     func itemTableCell(cell: RTItemTableViewCell, didTapOnItem item: RTItem) {
-        performSegue(withIdentifier: "ShowPreview", sender: item.originalPreview?.url)
+        if let url = item.originalPreview?.url {
+            performSegue(withIdentifier: "ShowPreview", sender: url)
+        } else {
+            showOKAlert(message: "This top has no preview!")
+        }
     }
 }

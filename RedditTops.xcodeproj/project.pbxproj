@@ -24,6 +24,7 @@
 		1C962A3D1EF21A3900BE943E /* RTItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3C1EF21A3900BE943E /* RTItemPreview.swift */; };
 		1C962A3F1EF3251D00BE943E /* RTImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A3E1EF3251D00BE943E /* RTImageLoader.swift */; };
 		1C962A411EF3593B00BE943E /* RTImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C962A401EF3593B00BE943E /* RTImagePreviewViewController.swift */; };
+		1CB7F1941EF370F10058BDB8 /* RTUIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7F1931EF370F10058BDB8 /* RTUIHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		1C962A3C1EF21A3900BE943E /* RTItemPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTItemPreview.swift; sourceTree = "<group>"; };
 		1C962A3E1EF3251D00BE943E /* RTImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTImageLoader.swift; sourceTree = "<group>"; };
 		1C962A401EF3593B00BE943E /* RTImagePreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTImagePreviewViewController.swift; sourceTree = "<group>"; };
+		1CB7F1931EF370F10058BDB8 /* RTUIHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTUIHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		1C8B9CC51EE632D100AB1F09 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1CB7F1931EF370F10058BDB8 /* RTUIHelpers.swift */,
 				1C060D741EEF60EC00A5DD52 /* RTTopsViewController.swift */,
 				1C962A3A1EF1F90B00BE943E /* RTItemTableViewCell.swift */,
 				1C962A401EF3593B00BE943E /* RTImagePreviewViewController.swift */,
@@ -221,6 +224,7 @@
 				1C962A411EF3593B00BE943E /* RTImagePreviewViewController.swift in Sources */,
 				1C060D711EE6515F00A5DD52 /* RTRedditNetworkManager.swift in Sources */,
 				1C060D771EEF6E2800A5DD52 /* RTDatasource.swift in Sources */,
+				1CB7F1941EF370F10058BDB8 /* RTUIHelpers.swift in Sources */,
 				1C962A3D1EF21A3900BE943E /* RTItemPreview.swift in Sources */,
 				1C060D811EF0A7E400A5DD52 /* RTTopsDatasource.swift in Sources */,
 				1C962A3F1EF3251D00BE943E /* RTImageLoader.swift in Sources */,
